@@ -81,6 +81,7 @@ public class SecurityConfig {
             //Obviously we need to be able to login without being logged in :-)
             .antMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
 
+
             //Required in order to use the h2-console
             .antMatchers("/h2*/**").permitAll()
 
@@ -91,7 +92,7 @@ public class SecurityConfig {
             .antMatchers("/api/cookie/**").permitAll()
 
             //Allow anonymous access to this endpoint
-            //.antMatchers(HttpMethod.GET,"/api/demo/anonymous").permitAll()
+            .antMatchers(HttpMethod.GET,"/api/demo/anonymous").permitAll()
 
             //necessary to allow for "nice" JSON Errors
             .antMatchers("/error").permitAll()
@@ -101,7 +102,7 @@ public class SecurityConfig {
            // .antMatchers(HttpMethod.GET,"/api/demo/anonymous").permitAll());
 
            // Demonstrates another way to add roles to an endpoint
-           // .antMatchers(HttpMethod.GET, "/api/demo/admin").hasAuthority("ADMIN")
+           .antMatchers(HttpMethod.GET, "/api/demo/admin").hasAuthority("ADMIN")
     .anyRequest().authenticated());
 
     return http.build();
